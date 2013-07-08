@@ -1,0 +1,28 @@
+#!/bin/bash
+# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+# Licensed under The GNU Public License Version 2 (or later)
+
+set -e
+set -u
+
+# The name of the internal display.
+internal="LVDS1"
+
+if ! external="$(xrandr | grep -Eo '(\S+) connected' | grep -Eo '^(\S+)' | grep -v "$internal")"
+then
+	external="$internal"
+fi
+
+# Set the Wacom devices to the internal display. If this is not done, they are
+# stretched out over both displays which makes no sense.
+xsetwacom list devices | grep 'Wacom Bamboo' | sed 's/id: .*//' | while read device
+do
+	xsetwacom set "$device" MapToOutput "$external"
+done
+
+# Set the button of the internal pen to be the right mouse button so that it
+# works as an eraser in Xournal.
+xsetwacom list devices | grep 'Wacom ISD' | sed 's/id: .*//' | while read device
+do
+	xsetwacom set "$device" Button 2
+done
