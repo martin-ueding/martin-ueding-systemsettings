@@ -12,3 +12,5 @@ setxkbmap -layout us -variant altgr-intl -option compose:menu,ctrl:nocaps
 xmodmap ~/.xmodmaprc
 
 xbindkey
+
+logger -t martin-ueding-systemsettings 'mu-keyset done'
