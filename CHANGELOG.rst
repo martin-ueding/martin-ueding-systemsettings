@@ -4,6 +4,9 @@
 Changelog
 #########
 
+v1.1
+    - More tasks
+
 v1.0.1
     - Fix command
 
