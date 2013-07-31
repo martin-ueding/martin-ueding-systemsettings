@@ -1,0 +1,70 @@
+#!/bin/bash
+# Copyright © 2012-2013 Martin Ueding <dev@martin-ueding.de>
+# Licensed under The GNU Public License Version 2 (or later)
+
+set -u
+
+###############################################################################
+#                               Mouse Settings                                #
+###############################################################################
+
+# ``xinput`` names for the devices.
+logitech="Logitech USB Optical Mouse"
+mighty="herbertuedings Maus"
+point="TPPS/2 IBM TrackPoint"
+razer="Razer Razer Diamondback 3G"
+touchpad="SynPS/2 Synaptics TouchPad"
+
+xinput --set-ptr-feedback "$logitech" 4 14 10
+xinput --set-ptr-feedback "$mighty" 3 30 10
+xinput --set-ptr-feedback "$point" 2 35 10
+xinput --set-ptr-feedback "$razer" 4 14 10
+
+###############################################################################
+#                              Keyboard Settings                              #
+###############################################################################
+
+# Sets the virtual keyboard layout to the right value so that the on screen
+# keyboard and KeePassX work correctly.
+
+#setxkbmap de nodeadkeys
+#setxkbmap -layout us -variant intl-unicode -option compose:menu,ctrl:nocaps
+setxkbmap -layout us -variant altgr-intl -option compose:menu,ctrl:nocaps
+
+# Extend the left shift to the “<” key.
+xmodmap -e 'keycode 94 = Shift_L'
+
+xbindkeys
+
+###############################################################################
+#                            Wacom Bamboo Settings                            #
+###############################################################################
+
+# The name of the internal display.
+internal="LVDS1"
+
+if ! external="$(xrandr | grep -Eo '(\S+) connected' | grep -Eo '^(\S+)' | grep -v "$internal")"
+then
+	external="$internal"
+fi
+
+# Set the Wacom devices to the internal display. If this is not done, they are
+# stretched out over both displays which makes no sense.
+xsetwacom list devices | grep 'Wacom Bamboo' | sed 's/id: .*//' | while read device
+do
+	xsetwacom set "$device" MapToOutput "$external"
+done
+
+# Set the button of the internal pen to be the right mouse button so that it
+# works as an eraser in Xournal.
+xsetwacom list devices | grep 'Wacom ISD' | sed 's/id: .*//' | while read device
+do
+	xsetwacom set "$device" Button 2
+done
+
+###############################################################################
+#                                   Finish                                    #
+###############################################################################
+
+logger -t martin-ueding-systemsettings 'mu-wakeup done'
+exit 0
