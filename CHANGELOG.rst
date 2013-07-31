@@ -5,6 +5,7 @@ Changelog
 #########
 
 v1.2
+    - **Added**: ``mu-startup`` script
     - Merge scripts into ``mu-wakeup``
 
 v1.1
