@@ -8,8 +8,3 @@ think-dock
 think-rotate normal
 
 think-touchpad
-
-if type kdialog &> /dev/null
-then
-	#kdialog --title "think-rotate" --passivepopup "Ausführung von think-rotate and think-dock fertig." 1
-fi
