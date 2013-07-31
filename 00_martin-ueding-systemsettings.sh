@@ -6,8 +6,6 @@ case "$1" in
 	suspend|hibernate)
 		;;
 	resume|thaw)
-		su -c "DISPLAY=:0.0 /usr/bin/mu-bamboo" --login mu
-		su -c "DISPLAY=:0.0 /usr/bin/mu-keyset" --login mu
-		su -c "DISPLAY=:0.0 /usr/bin/mu-mouse-settings" --login mu
+		su -c "DISPLAY=:0.0 /usr/bin/mu-wakeup" --login mu
 		;;
 esac
