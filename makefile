@@ -5,9 +5,7 @@ all:
 
 install:
 	install -d "$(DESTDIR)/usr/bin"
-	install mu-bamboo -t "$(DESTDIR)/usr/bin"
-	install mu-keyset -t "$(DESTDIR)/usr/bin"
-	install mu-mouse-settings -t "$(DESTDIR)/usr/bin"
+	install mu-wakeup -t "$(DESTDIR)/usr/bin"
 #
 	install -d "$(DESTDIR)/etc/pm/sleep.d"
 	install 00_martin-ueding-systemsettings.sh -t "$(DESTDIR)/etc/pm/sleep.d"
