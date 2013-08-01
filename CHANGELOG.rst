@@ -4,6 +4,9 @@
 Changelog
 #########
 
+v1.2.1
+    - Move touchpad into ``mu-wakeup`` script
+
 v1.2
     - **Added**: ``mu-startup`` script
     - Merge scripts into ``mu-wakeup``
