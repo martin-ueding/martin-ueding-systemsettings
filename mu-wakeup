@@ -66,7 +66,10 @@ done
 #                                  Touchpad                                   #
 ###############################################################################
 
-think-touchpad off
+if xinput | grep -E "TrackPoint|Mouse"
+then
+	think-touchpad off
+fi
 
 ###############################################################################
 #                                   Finish                                    #
