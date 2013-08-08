@@ -4,6 +4,9 @@
 Changelog
 #########
 
+v1.2.2
+    - Only disable touchpad if mouse or TrackPoint is connected
+
 v1.2.1
     - Move touchpad into ``mu-wakeup`` script
 
