@@ -35,7 +35,7 @@ setxkbmap -layout us -variant altgr-intl -option compose:menu,ctrl:nocaps
 xmodmap -e 'keycode 94 = Shift_L'
 
 # Swap backslash and enter key.
-xmodmap -e 'keycode 51 = KP_Enter NoSymbol KP_Enter'
+xmodmap -e 'keycode 51 = Return NoSymbol Return'
 xmodmap -e 'keycode 36 = backslash bar backslash bar notsign brokenbar notsign'
 
 xbindkeys
