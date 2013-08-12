@@ -33,6 +33,8 @@ setxkbmap -layout us -variant altgr-intl -option compose:menu,ctrl:nocaps
 
 # Extend the left shift to the “<” key.
 xmodmap -e 'keycode 94 = Shift_L'
+xmodmap -e 'keycode 51 = KP_Enter NoSymbol KP_Enter'
+xmodmap -e 'keycode 36 = backslash bar backslash bar notsign brokenbar notsign'
 
 xbindkeys
 
