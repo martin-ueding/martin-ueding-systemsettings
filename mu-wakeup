@@ -38,8 +38,8 @@ xmodmap -e 'keycode 94 = Shift_L'
 # by the presence of a preset keycode 94.
 
 # Swap backslash and enter key.
-xmodmap -e 'keycode 51 = Return NoSymbol Return'
-xmodmap -e 'keycode 36 = backslash bar backslash bar notsign brokenbar notsign'
+#xmodmap -e 'keycode 51 = Return NoSymbol Return'
+#xmodmap -e 'keycode 36 = backslash bar backslash bar notsign brokenbar notsign'
 
 xbindkeys
 
