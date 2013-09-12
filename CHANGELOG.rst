@@ -4,6 +4,11 @@
 Changelog
 #########
 
+v1.3
+    - **Added**: Swap backslash and enter if ``-g`` is given
+    - **Added**: ``bei-frederike``
+    - **Added**: ``home-startup``
+
 v1.2.2
     - Only disable touchpad if mouse or TrackPoint is connected
 
