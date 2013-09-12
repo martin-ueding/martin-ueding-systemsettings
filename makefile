@@ -6,6 +6,7 @@ all:
 install:
 	install -d "$(DESTDIR)/usr/bin"
 	install bei-frederike -t "$(DESTDIR)/usr/bin"
+	install home-startup -t "$(DESTDIR)/usr/bin"
 	install mu-startup -t "$(DESTDIR)/usr/bin"
 	install mu-wakeup -t "$(DESTDIR)/usr/bin"
 #
