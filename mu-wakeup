@@ -8,14 +8,14 @@ swap_return_backslash=false
 
 while getopts "gv" opt
 do
-	case "$opt" in
-		g)
-			swap_return_backslash=true
-			;;
-		v)
-			set -x
-			;;
-	esac
+    case "$opt" in
+        g)
+            swap_return_backslash=true
+            ;;
+        v)
+            set -x
+            ;;
+    esac
 done
 
 ###############################################################################
@@ -50,9 +50,9 @@ xmodmap -e 'keycode 94 = Shift_L'
 
 if [[ "$swap_return_backslash" == true ]]
 then
-	# Swap backslash and enter key.
-	xmodmap -e 'keycode 51 = Return NoSymbol Return'
-	xmodmap -e 'keycode 36 = backslash bar backslash bar notsign brokenbar notsign'
+    # Swap backslash and enter key.
+    xmodmap -e 'keycode 51 = Return NoSymbol Return'
+    xmodmap -e 'keycode 36 = backslash bar backslash bar notsign brokenbar notsign'
 fi
 
 xbindkeys
@@ -66,21 +66,21 @@ internal="LVDS1"
 
 if ! external="$(xrandr | grep -Eo '(\S+) connected' | grep -Eo '^(\S+)' | grep -v "$internal")"
 then
-	external="$internal"
+    external="$internal"
 fi
 
 # Set the Wacom devices to the internal display. If this is not done, they are
 # stretched out over both displays which makes no sense.
 xsetwacom list devices | grep 'Wacom Bamboo' | sed 's/id: .*//' | while read device
 do
-	xsetwacom set "$device" MapToOutput "$external"
+    xsetwacom set "$device" MapToOutput "$external"
 done
 
 # Set the button of the internal pen to be the right mouse button so that it
 # works as an eraser in Xournal.
 xsetwacom list devices | grep 'Wacom ISD' | sed 's/id: .*//' | while read device
 do
-	xsetwacom set "$device" Button 2
+    xsetwacom set "$device" Button 2
 done
 
 ###############################################################################
@@ -89,7 +89,7 @@ done
 
 if xinput | grep -E "TrackPoint|Mouse"
 then
-	think-touchpad off
+    think-touchpad off
 fi
 
 ###############################################################################
