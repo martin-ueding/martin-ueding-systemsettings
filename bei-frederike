@@ -4,5 +4,5 @@
 set -e
 set -u
 
-xrandr --output VGA1 --auto --right-of LVDS1 --noprimary
+xrandr --output VGA1 --auto --right-of LVDS1 --primary
 mu-wakeup
