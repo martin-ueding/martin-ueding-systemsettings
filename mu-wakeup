@@ -97,4 +97,10 @@ fi
 ###############################################################################
 
 logger -t martin-ueding-systemsettings 'mu-wakeup done'
+
+if type kdialog &> /dev/null
+then
+    kdialog --title martin-ueding-systemsettings --passivepopup $"mu-wakeup done"
+fi
+
 exit 0
