@@ -4,6 +4,10 @@
 Changelog
 #########
 
+v2.0
+    - Start ``mu-wakeup`` from ``mu-startup``
+    - Use ``kdialog``
+
 v1.3
     - **Added**: Swap backslash and enter if ``-g`` is given
     - **Added**: ``bei-frederike``
