@@ -4,6 +4,8 @@
 set -e
 set -u
 
+xrandr --dpi 96
+
 think-dock
 think-rotate normal
 
