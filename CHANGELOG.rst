@@ -4,6 +4,10 @@
 Changelog
 #########
 
+v2.1
+    - Start ``nm-applet``
+    - Set DPI with ``xrandr --dpi``
+
 v2.0
     - Start ``mu-wakeup`` from ``mu-startup``
     - Use ``kdialog``
