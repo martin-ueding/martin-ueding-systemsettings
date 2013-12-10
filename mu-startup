@@ -9,6 +9,14 @@ xrandr --dpi 96
 think-dock
 think-rotate normal
 
+
+# If I use Awesome WM without and KDE, start ``nm-applet``.
+if ! pgrep plasma-desktop && ! pgrep nm-applet
+then
+    nm-applet &
+    disown
+fi
+
 if type kdialog &> /dev/null
 then
     kdialog --title martin-ueding-systemsettings --passivepopup $"mu-startup done"
