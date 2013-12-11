@@ -4,18 +4,27 @@
 set -e
 set -u
 
+local-logger() {
+    echo "mu-startup: $@"
+}
+
 xrandr --dpi 96
 
 think-dock
 think-rotate normal
 
-
-# If I use Awesome WM without and KDE, start ``nm-applet``.
-if ! pgrep plasma-desktop && ! pgrep nm-applet
-then
-    nm-applet &
-    disown
-fi
+{
+    sleep 10
+    # If I use Awesome WM without and KDE, start ``nm-applet``.
+    if ! pgrep plasma-desktop && ! pgrep nm-applet
+    then
+        local-logger $"Neither plasma-desktop nor nm-applet running."
+        nm-applet &
+        disown
+    else
+        local-logger $"plasma-desktop or nm-applet running."
+    fi
+} &
 
 if type kdialog &> /dev/null
 then
@@ -23,3 +32,5 @@ then
 fi
 
 mu-wakeup
+
+wait
