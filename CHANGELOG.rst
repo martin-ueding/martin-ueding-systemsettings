@@ -4,6 +4,9 @@
 Changelog
 #########
 
+v2.1.1
+    - Wait for ``plasma-desktop``
+
 v2.1
     - Start ``nm-applet``
     - Set DPI with ``xrandr --dpi``
