@@ -23,11 +23,6 @@ think-rotate normal
     fi
 } &
 
-if type kdialog &> /dev/null
-then
-    kdialog --title martin-ueding-systemsettings --passivepopup $"mu-startup done"
-fi
-
 mu-wakeup
 
 wait
