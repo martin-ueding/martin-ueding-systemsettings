@@ -1,8 +1,12 @@
-.. Copyright © 2013 Martin Ueding <dev@martin-ueding.de>
+.. Copyright © 2013-2014 Martin Ueding <dev@martin-ueding.de>
 
 #########
 Changelog
 #########
+
+v2.2
+    - Remove ``kdialog`` invocations
+    - Do not fail on single errors
 
 v2.1.1
     - Wait for ``plasma-desktop``
