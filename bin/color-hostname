@@ -1,0 +1,68 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# Copyright © 2014 Martin Ueding <dev@martin-ueding.de>
+
+import argparse
+import os
+import hashlib
+import socket
+
+import termcolor
+
+__docformat__ = "restructuredtext en"
+
+def main():
+    options = _parse_args()
+
+    hostname = socket.gethostname()
+    env = os.environ
+    is_ssh = 'SSH_CLIENT' in env
+    prompt = {}
+
+    if not is_ssh and hostname.startswith('Martin-'):
+        prompt['host'] = ''
+    else:
+        colors = ['red', 'yellow', 'green', 'blue', 'cyan', 'white', 'magenta', 'grey']
+        host_hash = hashlib.sha1(hostname.encode()).hexdigest()
+        host_number = int(host_hash, 16) % len(colors)
+        host_color = colors[host_number]
+        prompt['host'] = '@' + termcolor.colored(hostname, host_color, attrs=('bold',))
+
+    user_color = 'red' if env['USER'] == 'root' else 'green'
+    prompt['user'] = termcolor.colored(env['USER'], user_color, attrs=('bold',))
+
+    host_string = '{user}{host}:'.format(**prompt)
+    print(host_string)
+
+def _parse_args():
+    """
+    Parses the command line arguments.
+
+    If the logging module is imported, set the level according to the number of
+    ``-v`` given on the command line.
+
+    :return: Namespace with arguments.
+    :rtype: Namespace
+    """
+    parser = argparse.ArgumentParser(description="")
+    #parser.add_argument("args", metavar="N", type=str, nargs="*", help="Positional arguments.")
+    #parser.add_argument("", dest="", type="", default=, help=)
+    #parser.add_argument("--version", action="version", version="<the version>")
+    parser.add_argument("-v", dest='verbose', action="count", help='Enable verbose output. Can be supplied multiple times for even more verbosity.')
+
+    options = parser.parse_args()
+
+    # Try to set the logging level in case the logging module is imported.
+    try:
+        if options.verbose == 1:
+            logging.basicConfig(level=logging.INFO)
+        elif options.verbose == 2:
+            logging.basicConfig(level=logging.DEBUG)
+    except NameError as e:
+        pass
+
+    return options
+
+if __name__ == "__main__":
+    main()

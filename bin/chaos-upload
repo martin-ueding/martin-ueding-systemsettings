@@ -1,0 +1,56 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+# Copyright © 2014 Martin Ueding <dev@martin-ueding.de>
+
+import argparse
+import datetime
+import os.path
+import subprocess
+import termcolor
+
+__docformat__ = "restructuredtext en"
+
+def main():
+    options = _parse_args()
+
+    now = datetime.datetime.now()
+    date = '{:04d}-{:02d}-{:02d}'.format(now.year, now.month, now.day)
+    server = 'chaos'
+    folder = 'public_html/uploads/' + date
+    url = 'http://chaos.stw-bonn.de/users/mu/uploads/' + date
+
+    if options.obsfuscate:
+        random = subprocess.check_output(['openssl', 'rand', '-hex', '16'])
+        folder = os.path.join(folder, random)
+        url += '/' + random
+
+    termcolor.cprint('Creating directory on server …', 'yellow')
+    subprocess.check_call(['ssh', server, 'mkdir', '-p', folder])
+
+    termcolor.cprint('Copying files to server …', 'yellow')
+    subprocess.check_call(['scp'] + options.files + [server + ':' + folder])
+
+    termcolor.cprint('Changing permissions to 644 …', 'yellow')
+    serverfiles = [folder + '/' + os.path.basename(file) for file in options.files]
+    subprocess.check_call(['ssh', server, 'chmod', '644'] + serverfiles)
+
+    termcolor.cprint('Here are your URLS:', 'green')
+    for file in options.files:
+        print(url + '/' + os.path.basename(file))
+
+def _parse_args():
+    """
+    Parses the command line arguments.
+
+    :return: Namespace with arguments.
+    :rtype: Namespace
+    """
+    parser = argparse.ArgumentParser(description="Uploads files to chaos:.")
+    parser.add_argument("files", metavar="file", type=str, nargs="+", help="Files to upload")
+    parser.add_argument("-o", dest="obsfuscate", action="store_true", help='Obsfucate the URL')
+
+    return parser.parse_args()
+
+if __name__ == "__main__":
+    main()
