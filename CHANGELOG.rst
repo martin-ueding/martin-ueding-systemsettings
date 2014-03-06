@@ -4,6 +4,9 @@
 Changelog
 #########
 
+v2.3.1
+    - Exclude skype script, as it interferes with regular skype package
+
 v2.3
     - Include more scripts:
       - battery-remaining
@@ -15,7 +18,6 @@ v2.3
       - tojpg
       - user-poweroff
       - utf8ify
-
 
 v2.2
 - Remove ``kdialog`` invocations
