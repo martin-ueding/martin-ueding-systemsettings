@@ -4,16 +4,29 @@
 Changelog
 #########
 
+v2.3
+    - Include more scripts:
+      - battery-remaining
+      - chaos-upload
+      - color-hostname
+      - o
+      - pydoc-html
+      - skype
+      - tojpg
+      - user-poweroff
+      - utf8ify
+
+
 v2.2
-    - Remove ``kdialog`` invocations
-    - Do not fail on single errors
+- Remove ``kdialog`` invocations
+- Do not fail on single errors
 
 v2.1.1
-    - Wait for ``plasma-desktop``
+- Wait for ``plasma-desktop``
 
 v2.1
-    - Start ``nm-applet``
-    - Set DPI with ``xrandr --dpi``
+- Start ``nm-applet``
+- Set DPI with ``xrandr --dpi``
 
 v2.0
     - Start ``mu-wakeup`` from ``mu-startup``

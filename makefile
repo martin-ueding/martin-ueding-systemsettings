@@ -13,6 +13,9 @@ install:
 	install -d "$(DESTDIR)/etc/pm/sleep.d"
 	install 00_martin-ueding-systemsettings.sh -t "$(DESTDIR)/etc/pm/sleep.d"
 #
+	install -d "$(DESTDIR)/etc/cron.hourly"
+	install nullmailer-queue -t "$(DESTDIR)/etc/cron.hourly"
+#
 	install -d "$(DESTDIR)/etc/cron.weekly"
 	install updatedb -t "$(DESTDIR)/etc/cron.weekly"
 
