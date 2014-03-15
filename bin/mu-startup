@@ -7,8 +7,8 @@ local-logger() {
 
 xrandr --dpi 96
 
-think-dock
-think-rotate normal
+thinkpad-dock
+thinkpad-rotate normal
 
 {
     sleep 10

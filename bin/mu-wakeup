@@ -89,7 +89,7 @@ done
 
 if xinput | grep -E "TrackPoint|Mouse"
 then
-    think-touchpad off
+    thinkpad-touchpad off
 fi
 
 ###############################################################################
