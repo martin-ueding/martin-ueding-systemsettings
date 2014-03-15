@@ -4,6 +4,9 @@
 Changelog
 #########
 
+v2.3.2
+    - Fix names
+
 v2.3.1
     - Exclude skype script, as it interferes with regular skype package
 
