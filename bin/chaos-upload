@@ -17,11 +17,18 @@ def main():
     now = datetime.datetime.now()
     date = '{:04d}-{:02d}-{:02d}'.format(now.year, now.month, now.day)
     server = 'chaos'
-    folder = 'public_html/uploads/' + date
-    url = 'http://chaos.stw-bonn.de/users/mu/uploads/' + date
+    basefolder = 'public_html/uploads/'
+    baseurl = 'http://chaos.stw-bonn.de/users/mu/uploads/'
+
+    if options.temporary:
+        folder = basefolder + 'tmp/' + date
+        url = baseurl + 'tmp/' + date
+    else:
+        folder = basefolder + date
+        url = baseurl + date
 
     if options.obsfuscate:
-        random = subprocess.check_output(['openssl', 'rand', '-hex', '16'])
+        random = subprocess.check_output(['openssl', 'rand', '-hex', '16']).decode().strip()
         folder = os.path.join(folder, random)
         url += '/' + random
 
@@ -49,6 +56,7 @@ def _parse_args():
     parser = argparse.ArgumentParser(description="Uploads files to chaos:.")
     parser.add_argument("files", metavar="file", type=str, nargs="+", help="Files to upload")
     parser.add_argument("-o", dest="obsfuscate", action="store_true", help='Obsfucate the URL')
+    parser.add_argument("-t", dest="temporary", action="store_true", help='This file can be deleted soon')
 
     return parser.parse_args()
 
