@@ -4,6 +4,11 @@
 Changelog
 #########
 
+v2.4
+    Released: 2014-06-03
+
+    - Add ``-t`` option to *chaos-upload*
+
 v2.3.2
     - Fix names
 
