@@ -51,7 +51,7 @@ then
     xmodmap -e 'keycode 36 = backslash bar backslash bar notsign brokenbar notsign'
 fi
 
-xbindkeys
+type xbindkeys &> /dev/null && xbindkeys
 
 ###############################################################################
 #                            Wacom Bamboo Settings                            #
@@ -83,9 +83,14 @@ done
 #                                  Touchpad                                   #
 ###############################################################################
 
-if xinput | grep -E "TrackPoint|Mouse"
+if type thinkpad-touchpad &> /dev/null && xinput | grep -E "TrackPoint|Mouse"
 then
     thinkpad-touchpad off
+fi
+
+if type thinkpad-touch &> /dev/null && ! xinput | grep "Mouse"
+then
+    thinkpad-touch on
 fi
 
 ###############################################################################
