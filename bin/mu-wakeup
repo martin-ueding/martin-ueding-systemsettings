@@ -88,9 +88,14 @@ then
     thinkpad-touchpad off
 fi
 
-if type thinkpad-touch &> /dev/null && ! xinput | grep "Mouse"
+if type thinkpad-touch &> /dev/null
 then
-    thinkpad-touch on
+    if xinput | grep "Mouse"
+    then
+        thinkpad-touch off
+    else
+        thinkpad-touch on
+    fi
 fi
 
 ###############################################################################
