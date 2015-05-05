@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright © 2012-2014 Martin Ueding <dev@martin-ueding.de>
+# Copyright © 2012-2015 Martin Ueding <dev@martin-ueding.de>
 
 local-logger() {
     echo "mu-startup: $@"
@@ -10,19 +10,4 @@ xrandr --dpi 96
 thinkpad-dock
 thinkpad-rotate normal
 
-{
-    sleep 10
-    # If I use Awesome WM without and KDE, start ``nm-applet``.
-    if ! pgrep plasma-desktop && ! pgrep nm-applet
-    then
-        local-logger $"Neither plasma-desktop nor nm-applet running."
-        nm-applet &
-        disown
-    else
-        local-logger $"plasma-desktop or nm-applet running."
-    fi
-} &
-
 mu-wakeup
-
-wait
